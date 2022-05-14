@@ -1,15 +1,22 @@
 // CORS when consuming Medusa from admin
-const ADMIN_CORS = process.env.ADMIN_CORS || "http://localhost:7000,http://localhost:7001";
+const ADMIN_CORS = "http://localhost:7000,http://localhost:7001";
 
 // CORS to avoid issues when consuming Medusa from a client
-const STORE_CORS = process.env.STORE_CORS || "http://localhost:8000";
+const STORE_CORS = "http://localhost:8000";
 
 // Database URL (here we use a local database called medusa-development)
-const DATABASE_URL =
-  process.env.DATABASE_URL || "postgres://localhost/medusa-store";
+
+
+const DB_USERNAME = medusa;
+const DB_PASSWORD = 777777;
+const DB_HOST = 127.0.0.1;
+const DB_PORT = 5432;
+const DB_DATABASE = pix;
+
+const DATABASE_URL = "postgres://medusa33:77777712@127.0.0.1:5432/pix";
 
 // Medusa uses Redis, so this needs configuration as well
-const REDIS_URL = process.env.REDIS_URL || "redis://localhost:6379";
+const REDIS_URL = "redis://localhost:6379";
 
 // Stripe keys
 const STRIPE_API_KEY = process.env.STRIPE_API_KEY || "";
@@ -30,16 +37,15 @@ const plugins = [
   // },
 ];
 
+
 module.exports = {
   projectConfig: {
-    // redis_url: REDIS_URL,
-    // For more production-like environment install PostgresQL
-    // database_url: DATABASE_URL,
-    // database_type: "postgres",
-    database_database: "./medusa-db.sql",
-    database_type: "sqlite",
+    redis_url: REDIS_URL,
+    database_url: DATABASE_URL,
+    database_type: "postgres",
     store_cors: STORE_CORS,
     admin_cors: ADMIN_CORS,
+    database_extra: { ssl: { rejectUnauthorized: false } }
   },
   plugins,
 };
