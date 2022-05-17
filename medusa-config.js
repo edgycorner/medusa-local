@@ -7,13 +7,13 @@ const STORE_CORS = "http://localhost:8000";
 // Database URL (here we use a local database called medusa-development)
 
 
-const DB_USERNAME = medusa;
-const DB_PASSWORD = 777777;
-const DB_HOST = 127.0.0.1;
-const DB_PORT = 5432;
-const DB_DATABASE = pix;
+const DB_USERNAME = process.env.DB_USERNAME;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+const DB_HOST = process.env.DB_HOST;
+const DB_PORT = process.env.DB_PORT;
+const DB_DATABASE = process.env.DB_DATABASE;
 
-const DATABASE_URL = "postgres://medusa33:77777712@127.0.0.1:5432/pix";
+const DATABASE_URL = `postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`;
 
 // Medusa uses Redis, so this needs configuration as well
 const REDIS_URL = "redis://localhost:6379";
